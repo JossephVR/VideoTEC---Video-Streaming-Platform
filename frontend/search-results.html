@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de búsqueda - VideoTEC</title>
+
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom JavaScript files (main.js and search-results.js) -->
+    <script src="scripts/main.js" defer></script>
+    <script src="scripts/search-results.js" defer></script>
+
+    <!-- Font Awesome Icons (via CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom Stylesheet (main.css) -->
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- Custom Stylesheet for Search Results Page -->
+    <link rel="stylesheet" href="styles/search-results.css">
+</head>
+<body class="bg-[#f9f9f9]">
+    <!-- Header Section (Fixed at top) -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-30">
+        <nav class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Sidebar Toggle Button -->
+                <button id="sidebarToggle" class="text-gray-600 mr-4">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <!-- Logo and Branding -->
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-play-circle text-green-600 text-3xl mr-1"></i>
+                    <span class="font-bold text-xl">VideoTEC</span>
+                </a>
+            </div>
+
+            <!-- Search Bar Section -->
+            <div class="flex-1 max-w-2xl mx-4">
+                <div class="relative">
+                    <input type="text" placeholder="Buscar" id="search-input"
+                           class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="search-button" class="absolute right-0 top-0 mt-2 mr-4 text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Upload Button -->
+            <div class="flex items-center">
+                <a href="upload.html" class="bg-gray-100 text-gray-700 py-2 px-4 rounded-full font-medium hover:bg-gray-200 transition duration-300">
+                    <i class="fas fa-video mr-2"></i>Subir
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar Section (Hidden by default, slide-in from the left) -->
+    <aside id="sidebar" class="bg-white fixed left-0 top-0 bottom-0 w-64 transform -translate-x-full transition-transform duration-300 ease-in-out z-20 shadow-lg">
+        <div class="py-4 mt-14">
+            <!-- Home Link -->
+            <a href="index.html" class="flex items-center px-6 py-2 text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-home mr-4"></i>
+                <span>Inicio</span>
+            </a>
+
+            <!-- Favorites Link (Currently inactive) -->
+            <a href="#" class="flex items-center px-6 py-2 text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-fire mr-4"></i>
+                <span>Favoritos</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Section for Search Results -->
+    <main class="container mx-auto px-4 py-8 mt-14">
+        <h1 class="text-2xl font-bold mb-4">Resultados de búsqueda para: <span id="search-term" class="text-blue-600"></span></h1>
+
+        <!-- Container for displaying search results -->
+        <div id="search-results" class="space-y-4">
+            <!-- Dynamic search results will be inserted here -->
+        </div>
+    </main>
+
+    <!-- Overlay (Used for modal or sidebar background) -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden"></div>
+</body>
+</html>

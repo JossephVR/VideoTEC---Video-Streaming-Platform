@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Meta tags for character set and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the page -->
+    <title>Subir Video - VideoTEC</title>
+    
+    <!-- TailwindCSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- JavaScript files for interactivity -->
+    <script src="scripts/main.js" defer></script>
+    <script src="scripts/upload.js" defer></script>
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="bg-[#f9f9f9]">
+    <!-- Header section with navigation -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-30">
+        <nav class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Sidebar toggle button -->
+                <button id="sidebarToggle" class="text-gray-600 mr-4">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                
+                <!-- Logo and link to the homepage -->
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-play-circle text-green-600 text-3xl mr-1"></i>
+                    <span class="font-bold text-xl">VideoTEC</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar menu (hidden by default) -->
+    <aside id="sidebar" class="bg-white fixed left-0 top-0 bottom-0 w-64 transform -translate-x-full transition-transform duration-300 ease-in-out z-20 shadow-lg">
+        <div class="py-4 mt-14">
+            <!-- Link to the homepage -->
+            <a href="index.html" class="flex items-center px-6 py-2 text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-home mr-4"></i>
+                <span>Inicio</span>
+            </a>
+            
+            <!-- Link to favorites page -->
+            <a href="#" class="flex items-center px-6 py-2 text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-fire mr-4"></i>
+                <span>Favoritos</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main content for video upload -->
+    <main class="container mx-auto mt-16 px-4 py-8">
+        <h1 class="text-2xl font-bold mb-6">Subir video</h1>
+        
+        <!-- Video upload form container -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <form id="upload-form">
+                <!-- Video file upload section -->
+                <div class="mb-6">
+                    <label for="video-file" class="block text-sm font-medium text-gray-700 mb-2">Seleccionar archivo de video</label>
+                    <div class="mt-1 border-2 border-gray-300 border-dashed rounded-md relative">
+                        <div id="video-drop-zone" class="p-6 flex items-center justify-center">
+                            <!-- Drop zone and file selection prompt -->
+                            <div class="space-y-1 text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="flex text-sm text-gray-600">
+                                    <!-- Hidden file input for video file -->
+                                    <label for="video-file" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                        <span>Subir un archivo</span>
+                                        <input id="video-file" name="video-file" type="file" class="sr-only" accept="video/mp4">
+                                    </label>
+                                    <p class="pl-1">o arrastra y suelta</p>
+                                </div>
+                                <p class="text-xs text-gray-500">MP4 hasta 10MB</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Display video file name after selection -->
+                        <div id="video-file-info" class="hidden p-6 text-center">
+                            <p id="video-file-name" class="text-sm text-gray-700 font-semibold mb-2"></p>
+                            <button type="button" id="change-video" class="text-blue-600 hover:text-blue-800">Cambiar video</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Title input for the video -->
+                <div class="mb-6">
+                    <label for="video-title" class="block text-sm font-medium text-gray-700 mb-2">Título (obligatorio)</label>
+                    <input type="text" id="video-title" name="video-title" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Description input for the video -->
+                <div class="mb-6">
+                    <label for="video-description" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                    <textarea id="video-description" name="video-description" rows="4" maxlength="300"
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <p class="mt-1 text-sm text-gray-500">Máximo 300 caracteres</p>
+                </div>
+
+                <!-- Thumbnail upload section (optional) -->
+                <div class="mb-6">
+                    <label for="thumbnail" class="block text-sm font-medium text-gray-700 mb-2">Miniatura (opcional)</label>
+                    <div class="mt-1 border-2 border-gray-300 border-dashed rounded-md relative">
+                        <div id="thumbnail-drop-zone" class="p-6 flex items-center justify-center">
+                            <div class="space-y-1 text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="flex text-sm text-gray-600">
+                                    <!-- Hidden file input for thumbnail image -->
+                                    <label for="thumbnail" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                        <span>Subir una imagen</span>
+                                        <input id="thumbnail" name="thumbnail" type="file" class="sr-only" accept="image/jpeg,image/png">
+                                    </label>
+                                    <p class="pl-1">o arrastra y suelta</p>
+                                </div>
+                                <p class="text-xs text-gray-500">JPG hasta 2MB</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Display thumbnail preview after selection -->
+                        <div id="thumbnail-preview-container" class="hidden p-6">
+                            <img id="thumbnail-preview" class="max-w-full h-auto max-h-48 mx-auto" alt="Vista previa de la miniatura">
+                            <button type="button" id="change-thumbnail" class="mt-4 text-blue-600 hover:text-blue-800 block mx-auto">Cambiar miniatura</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit button (disabled until valid data is provided) -->
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-gray-400 text-white px-6 py-2 rounded-md font-medium transition duration-300 cursor-not-allowed">
+                        Subir video
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Status overlay for video upload process -->
+    <div id="upload-status" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+            <i class="fas fa-spinner fa-spin text-4xl text-blue-600 mb-4"></i>
+            <p class="text-xl font-semibold">Subiendo video...</p>
+        </div>
+    </div>
+
+    <!-- Overlay for additional UI elements -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden"></div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadata for the webpage -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproducción de Video - VideoTEC</title>
+
+    <!-- External scripts and stylesheets -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- TailwindCSS CDN -->
+    <script src="scripts/main.js" defer></script> <!-- Main JavaScript file -->
+    <script src="scripts/video-player.js" defer></script> <!-- Video player specific JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="styles/main.css"> <!-- Custom stylesheet -->
+</head>
+<body class="bg-[#f9f9f9]">
+    <!-- Header section with navigation -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-30">
+        <nav class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Sidebar toggle button -->
+                <button id="sidebarToggle" class="text-gray-600 mr-4">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <!-- VideoTEC logo and home link -->
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-play-circle text-green-600 text-3xl mr-1"></i>
+                    <span class="font-bold text-xl">VideoTEC</span>
+                </a>
+            </div>
+            <!-- Search bar for video search -->
+            <div class="flex-1 max-w-2xl mx-4">
+                <div class="relative">
+                    <input type="text" id="search-input" placeholder="Buscar" 
+                           class="w-full py-2 px-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="search-button" class="absolute right-0 top-0 mt-2 mr-4 text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Upload button -->
+            <div class="flex items-center">
+                <a href="upload.html" class="bg-gray-100 text-gray-700 py-2 px-4 rounded-full font-medium hover:bg-gray-200 transition duration-300">
+                    <i class="fas fa-video mr-2"></i>Subir
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar navigation (hidden by default) -->
+    <aside id="sidebar" class="bg-white fixed left-0 top-0 bottom-0 w-64 transform -translate-x-full transition-transform duration-300 ease-in-out z-20 shadow-lg">
+        <div class="py-4 mt-14">
+            <a href="index.html" class="flex items-center px-6 py-2 text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-home mr-4"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="#" class="flex items-center px-6 py-2 text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-fire mr-4"></i>
+                <span>Favoritos</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main content area -->
+    <main class="container mx-auto px-4 py-8 mt-14">
+        <div class="max-w-4xl mx-auto">
+            <!-- Video player -->
+            <div class="aspect-w-16 aspect-h-9 mb-4">
+                <video id="main-video" controls class="w-full h-full object-cover">
+                    <source src="" type="video/mp4" id="video-source">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+            <!-- Video title -->
+            <h1 id="video-title" class="text-xl font-bold mb-2"></h1>
+            <!-- Video metadata (views, date) -->
+            <div class="flex items-center justify-between mb-4">
+                <div class="text-sm text-gray-500">
+                    <span id="video-views"></span> • 
+                    <span id="video-date"></span>
+                </div>
+                <!-- Favorite button -->
+                <button id="favorite-button" class="text-gray-500 hover:text-yellow-500">
+                    <i class="far fa-star"></i> Favorito
+                </button>
+            </div>
+            <hr class="my-4">
+            <!-- Video description -->
+            <div id="video-description" class="text-sm text-gray-700 mb-4"></div>
+            <hr class="my-4">
+            <!-- Comment section -->
+            <div class="mb-4">
+                <h3 class="font-bold text-xl mb-4">Comentarios</h3>
+                <div class="flex items-center mb-4">
+                    <!-- Input for new comment -->
+                    <input type="text" id="comment-input" placeholder="Añade un comentario público..." 
+                           class="flex-1 border-b border-gray-300 focus:outline-none focus:border-blue-500 pb-2">
+                    <button id="post-comment" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-md">Comentar</button>
+                </div>
+                <!-- Comment list (dynamic content) -->
+                <div id="comments-list">
+                    <!-- Comments will be inserted dynamically here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Overlay for additional UI elements (like loading or modal) -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden"></div>
+</body>
+</html>

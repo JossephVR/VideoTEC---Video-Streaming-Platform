@@ -1,0 +1,16 @@
+/* Media query for screens with a maximum width of 640px (e.g., mobile devices in portrait mode) */
+@media (max-width: 640px) {
+
+    /* Style adjustments for the .search-result-card container on small screens */
+    .search-result-card {
+        flex-direction: row; 
+        align-items: flex-start; 
+    }
+
+    /* Style adjustments for the image inside .search-result-card on small screens */
+    .search-result-card img {
+        width: 120px; 
+        height: 68px; 
+        margin-right: 12px; 
+    }
+}
